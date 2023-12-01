@@ -1,4 +1,4 @@
-""" Advent of Code 2022: wrapper for running my daily solution scripts."""
+""" Advent of Code 2023: wrapper for running my daily solution scripts."""
 
 from pydoc import importfile
 

@@ -46,8 +46,28 @@ def solve_part_1(input_data):
 
 
 def solve_part_2(input_data):
-    """Describe the next puzzle."""
-    pass
+    """Find the minimum cube set to make each game possible."""
+    total_score = 0
+    for game in input_data.keys():
+        print(input_data[game])
+        print()
+        bluemin = 0
+        redmin = 0
+        greenmin = 0
+        for game_round in input_data[game]:
+            green, red, blue = game_round["green"], game_round["red"], game_round["blue"]
+            if greenmin < green:
+                greenmin = green
+            if redmin < red:
+                redmin = red
+            if bluemin < blue:
+                bluemin = blue
+        game_power = greenmin * redmin * bluemin
+        total_score += game_power
+
+    print(f"The sum of all the powers of individual games is {total_score}")
+    # Success! in less than two hours of work, after doing NOTHING Python-related for months!
+    # I am very pleased.
 
 
 def solution(filename):
@@ -68,6 +88,7 @@ if __name__ == "__main__":
         arg = sys.argv[1]
     except IndexError:
         arg = "../data/day_02_input.txt"
+        # arg = "../data/day_02_testing.txt"
 
     # print(f"Data file = '{arg}'")  # debug
     solution(arg)

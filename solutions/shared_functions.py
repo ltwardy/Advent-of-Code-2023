@@ -7,7 +7,11 @@ from math import sqrt
 
 def data_filename(aoc_day):
     """Return the (string) name of the puzzle data file appropriate to today's Advent of Code puzzle."""
-    readfile = aoc_filename(aoc_day) + "_input.txt"
+    if aoc_day < 10:
+        aoc_day = "0" + str(aoc_day)
+    else:
+        aoc_day - str(aoc_day)
+    readfile = "day_" + aoc_day + "_input.txt"
     return readfile
 
 

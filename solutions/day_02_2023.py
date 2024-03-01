@@ -27,6 +27,8 @@ def parse(raw_data):
 
 def solve_part_1(input_data):
     """Decide which games in the input dictionary are possible given the starting conditions."""
+
+    print('''An Elf would like to play a game with you.  Can you figure out how many cubes he has in his bag?''')
     redmax = 12
     greenmax = 13
     bluemax = 14

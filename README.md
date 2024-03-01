@@ -13,6 +13,7 @@ My solutions for Advent of Code 2023, as I write them.
 
 ### Day 1
 Sadly, I haven't done anything in Python since last year's AoC. I'm definitely rusty.
+(Solved part 2 in February: not elegant but functional.)
 
 ### Day 2
 It's been another while -- now February 2024.

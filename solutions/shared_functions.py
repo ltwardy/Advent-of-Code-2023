@@ -69,3 +69,13 @@ def pause():
 
 def distance(x1, y1, x2, y2):
     return sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+
+def find_neighbors(coordinate_pair):
+    neighbors = []
+    x, y = coordinate_pair
+    for i in range(x-1,x+2):
+        for j in range(y-1,y+2):
+            neighbors.append((i, j))
+    neighbors.remove((x, y))
+    return neighbors

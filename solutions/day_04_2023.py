@@ -5,11 +5,12 @@
 from shared_functions import fetch_string_data
 
 
-# def intersection(card:tuple):
-#     list1, list2 = card
-#     return set(list1) & set(list2)
+def intersection(card: tuple):
+    list1, list2 = card
+    return set(list1) & set(list2)
 
-def find_winning_numbers(card:tuple):
+
+def find_winning_numbers(card: tuple):
     reference, my_nums = card
     winners = []
     for num in my_nums:
@@ -20,6 +21,7 @@ def find_winning_numbers(card:tuple):
 
 def parse(raw_data):
     """Make our input more useful for problem-solving."""
+
     # return a list of tuples, each one a pair of lists of integers
 
     def list_from_string(string_of_numbers):
@@ -35,6 +37,7 @@ def parse(raw_data):
         useful_data.append(useful_card)
 
     return useful_data
+
 
 def solve_part_1(input_data):
     """Describe the puzzle."""
@@ -53,8 +56,19 @@ def solve_part_1(input_data):
 
 
 def solve_part_2(input_data):
-    """Describe the next puzzle."""
-    pass
+    """Count cards and their multiples according to the rule."""
+    card_count = [1 for _line in input_data]
+    for index, card in enumerate(input_data):
+        n = card_count[index]
+        match_count = len(intersection(card))
+        for match in range(1, match_count + 1):
+            if index + match < len(input_data):
+                card_count[index + match] += n
+
+    total_cards = sum(card_count)
+
+    print(f"There are a total of {total_cards} scratchcards after duplication happens.")
+    # yay! success!
 
 
 def solution(filename):
@@ -78,7 +92,6 @@ if __name__ == "__main__":
         # arg = "testing.txt"
         arg = "../data/day_04_input.txt"
         # arg = "../data/day_04_testing.txt"
-
 
     print(f"Data file = '{arg}'.")  # debug
     solution(arg)

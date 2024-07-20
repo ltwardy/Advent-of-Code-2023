@@ -18,3 +18,11 @@ Sadly, I haven't done anything in Python since last year's AoC. I'm definitely r
 ### Day 2
 It's been another while -- now February 2024.
 I am so pleased that I solved this puzzle in a short afternoon.  That's a confidence boost. 
+
+### Day 7
+July 2024.  I haven't been making notes, oops. 
+I am again pleased with myself, this time for using a custom class to solve this puzzle. Defining the class (and the 
+functions necessary to compare instances) was a little clumsy, but once that's done the actual work of solving the 
+puzzle becomes trivial. That's the nicest feeling.
+
+

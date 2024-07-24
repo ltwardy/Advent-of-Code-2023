@@ -3,6 +3,7 @@
 
 
 from shared_functions import fetch_string_data
+import math
 
 
 def parse(raw_data):
@@ -34,19 +35,18 @@ def parse(raw_data):
 
 def solve_part_1(input_data):
     """Choose left or right elements from each pair as instructed until reaching the endpoint"""
-    pattern, nodelist = input_data
-    print(pattern)
-    print(nodelist)
+    pattern, node_dict = input_data
+    directions = [letter for letter in pattern]
     cursor = "AAA"
     endpoint = "ZZZ"
-    directions = [letter for letter in pattern]
-    step = directions[0]
+    # step = directions[0]
+    step = 0
     count = 0
     while cursor != endpoint:
-        print(cursor, "--->", nodelist[cursor])
+        # print(cursor, "--->", node_dict[cursor])
         # print(directions[step])
-        cursor = nodelist[cursor][(directions[step])]
-        print(cursor)
+        cursor = node_dict[cursor][(directions[step])]
+        # print(cursor)
         step += 1
         step = step % len(directions)
         count += 1
@@ -57,8 +57,49 @@ def solve_part_1(input_data):
 
 
 def solve_part_2(input_data):
-    """Describe the next puzzle."""
-    pass
+    """Follow a set of instructions through multiple paths to reach a destination."""
+    pattern, node_dict = input_data
+    directions = [letter for letter in pattern]
+
+    start_nodes = []
+    for node in node_dict.keys():
+        if node.endswith("A"):
+            start_nodes.append(node)
+    print(start_nodes)
+
+    end_nodes = []
+    for node in node_dict.keys():
+        if node.endswith("Z"):
+            end_nodes.append(node)
+    print(end_nodes)
+
+    # def not_done(nodeset):
+    #     for node in nodeset:
+    #         if node not in end_nodes:
+    #             return True
+    #     else:
+    #         return False
+
+    pathcounts = []
+    for node in start_nodes:
+        step = 0
+        count = 0
+        cursor = node
+        while cursor not in end_nodes:
+            # print(cursor, "--->", node_dict[cursor])
+            # print(directions[step])
+            cursor = node_dict[cursor][(directions[step])]
+            # print(cursor)
+            step += 1
+            step = step % len(directions)
+            count += 1
+        print(f"{cursor=}")
+        pathcounts.append(count)
+    print(pathcounts)
+
+    print(f"The least common multiple of these counts is {math.lcm(*pathcounts)}. Is that the answer?")
+
+    print(f"All paths have reached an endpoint together after {count} steps")
 
 
 def solution(filename):
@@ -67,7 +108,7 @@ def solution(filename):
     raw_data = fetch_string_data(filename)
     processed_data = parse(raw_data)
 
-    solve_part_1(processed_data)
+    # solve_part_1(processed_data)
     solve_part_2(processed_data)
 
 
@@ -82,6 +123,7 @@ if __name__ == "__main__":
         arg = "../data/day_08_input.txt"
         # arg = "../data/day_08_testing1.txt"
         # arg = "../data/day_08_testing2.txt"
+        # arg = "../data/day_08_testing3.txt"
 
 
     print(f"Data file = '{arg}'.")  # debug
